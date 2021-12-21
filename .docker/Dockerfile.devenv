@@ -1,0 +1,14 @@
+ARG VARIANT="14-buster"
+FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
+
+RUN npm install -g @angular/cli
+RUN npm i yalc -g
+
+EXPOSE 4201
+
+RUN useradd -s /bin/bash -m vscode
+RUN groupadd docker && usermod -aG docker vscode
+
+USER vscode
+
+ENTRYPOINT ["sleep", "infinity"]
